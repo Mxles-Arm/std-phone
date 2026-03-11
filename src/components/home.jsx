@@ -1,6 +1,6 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import db from "../firebase_config";
+import { db } from "../firebase_config";   // แก้ตรงนี้
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -57,7 +57,7 @@ export default function Home() {
     <div className="my-3">
 
       <div>
-        Name: 
+        Name:
         <input
           type="text"
           value={name}
