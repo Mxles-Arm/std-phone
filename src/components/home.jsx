@@ -1,6 +1,6 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
-import { db } from "../firebase_config";   // แก้ตรงนี้
+import { db } from "../firebase_config";
 import { Link } from "react-router-dom";
 
 export default function Home() {
@@ -29,7 +29,13 @@ export default function Home() {
   };
 
   const addPhone = () => {
-    const phone = { name: name, sect: sect, tel: tel };
+
+    if (!name || !sect || !tel) {
+      alert("Please fill all fields");
+      return;
+    }
+
+    const phone = { name, sect, tel };
 
     addDoc(stdPhoneRef, phone)
       .then(() => {
@@ -42,99 +48,158 @@ export default function Home() {
   };
 
   const delPhone = (id) => {
-    if (!window.confirm('Do you really want to delete?')) return;
+
+    if (!window.confirm('Delete this student?')) return;
 
     const targetDoc = doc(stdPhoneRef, id);
 
     deleteDoc(targetDoc)
-      .then(() => {
-        getAllPhones();
-      })
+      .then(() => getAllPhones())
       .catch(err => alert(err));
   };
 
   return (
-    <div className="my-3">
+    <div className="container my-4">
 
-      <div>
-        Name:
-        <input
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
+      {/* FORM CARD */}
 
-        Sect:
+      <div className="card shadow-lg border-0 mb-4">
+        <div className="card-body">
 
-        <input
-          type="radio"
-          name="rdSect"
-          value="ced"
-          checked={sect === 'ced'}
-          onChange={e => setSect(e.target.value)}
-        /> CED
+          <h4 className="text-center text-info mb-3">
+            Add Student Phone
+          </h4>
 
-        <input
-          type="radio"
-          name="rdSect"
-          value="tct"
-          checked={sect === 'tct'}
-          onChange={e => setSect(e.target.value)}
-        /> TCT
+          <div className="row g-2">
 
-        Tel:
-        <input
-          type="tel"
-          value={tel}
-          onChange={e => setTel(e.target.value)}
-        />
+            <div className="col-md-4">
+              <input
+                className="form-control"
+                placeholder="Student Name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              />
+            </div>
 
-        <button
-          className="btn btn-sm btn-outline-success"
-          onClick={addPhone}
-        >
-          Add Data
-        </button>
-      </div>
+            <div className="col-md-3 d-flex align-items-center">
 
-      {stdPhones.length > 0 ? (
-        stdPhones.map(phone => {
-          return (
-            <div
-              className="d-flex justify-content-between my-2 text-secondary"
-              key={phone.id}
-              style={{ border: '1px solid grey' }}
-            >
-
-              <div className="p-2">
-                <h4 className="text-info">{phone.name}</h4>
-                <div><b>Section:</b> {phone.sect}</div>
-                <div><b>Tel. No:</b> {phone.tel}</div>
+              <div className="form-check me-3">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  value="ced"
+                  checked={sect === 'ced'}
+                  onChange={e => setSect(e.target.value)}
+                />
+                <label className="form-check-label">CED</label>
               </div>
 
-              <div className="p-2">
-
-                <Link to="/edit" state={phone.id}>
-                  <button className="btn btn-sm btn-outline-warning">
-                    Edit
-                  </button>
-                </Link>
-
-                <button
-                  className="btn btn-sm btn-outline-danger"
-                  onClick={() => delPhone(phone.id)}
-                >
-                  Delete
-                </button>
-
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  value="tct"
+                  checked={sect === 'tct'}
+                  onChange={e => setSect(e.target.value)}
+                />
+                <label className="form-check-label">TCT</label>
               </div>
 
             </div>
-          );
-        })
-      ) : (
-        <h3>No data</h3>
-      )}
+
+            <div className="col-md-3">
+              <input
+                className="form-control"
+                placeholder="Telephone"
+                value={tel}
+                onChange={e => setTel(e.target.value)}
+              />
+            </div>
+
+            <div className="col-md-2">
+              <button
+                className="btn btn-success w-100"
+                onClick={addPhone}
+              >
+                Add
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      {/* DATA TABLE */}
+
+      <div className="card shadow border-0">
+        <div className="card-body">
+
+          <h4 className="text-center text-secondary mb-3">
+            Student List
+          </h4>
+
+          {stdPhones.length > 0 ? (
+
+            <table className="table table-hover align-middle">
+
+              <thead className="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Section</th>
+                  <th>Telephone</th>
+                  <th width="160">Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+
+                {stdPhones.map(phone => (
+
+                  <tr key={phone.id}>
+
+                    <td className="fw-bold text-info">
+                      {phone.name}
+                    </td>
+
+                    <td>{phone.sect}</td>
+
+                    <td>{phone.tel}</td>
+
+                    <td>
+
+                      <Link to="/edit" state={phone.id}>
+                        <button className="btn btn-warning btn-sm me-2">
+                          Edit
+                        </button>
+                      </Link>
+
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => delPhone(phone.id)}
+                      >
+                        Delete
+                      </button>
+
+                    </td>
+
+                  </tr>
+
+                ))}
+
+              </tbody>
+
+            </table>
+
+          ) : (
+            <div className="text-center text-muted">
+              No student data
+            </div>
+          )}
+
+        </div>
+      </div>
 
     </div>
   );

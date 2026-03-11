@@ -1,0 +1,57 @@
+/* OASIS STYLE BACKGROUND */
+
+body{
+  background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  min-height:100vh;
+  font-family:Arial, sans-serif;
+}
+
+
+/* ทำให้ container โปร่ง */
+
+.container{
+  background:transparent;
+}
+
+
+/* title */
+
+.oasis-title{
+  font-size:48px;
+  font-weight:bold;
+  letter-spacing:2px;
+  color:white;
+  text-shadow:2px 2px 12px black;
+  margin-bottom:30px;
+}
+
+
+/* card style */
+
+.oasis-card{
+  background:rgba(255,255,255,0.92);
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 10px 35px rgba(0,0,0,0.4);
+}
+
+
+/* table */
+
+.table{
+  background:white;
+}
+
+
+/* hover button */
+
+.btn{
+  transition:all 0.2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-1px);
+}
