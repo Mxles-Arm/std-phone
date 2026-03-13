@@ -1,57 +1,233 @@
-/* OASIS STYLE BACKGROUND */
-
-body{
-  background-image:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  min-height:100vh;
-  font-family:Arial, sans-serif;
+/* ===== PAGE ===== */
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Poppins", "Segoe UI", Tahoma, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(34, 211, 238, 0.22), transparent 32%),
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.20), transparent 30%),
+    radial-gradient(circle at bottom center, rgba(14, 165, 233, 0.16), transparent 30%),
+    linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 45%, #f0fdfa 100%);
+  background-attachment: fixed;
+  color: #0f172a;
 }
 
-
-/* ทำให้ container โปร่ง */
-
-.container{
-  background:transparent;
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1120px;
 }
 
-
-/* title */
-
-.oasis-title{
-  font-size:48px;
-  font-weight:bold;
-  letter-spacing:2px;
-  color:white;
-  text-shadow:2px 2px 12px black;
-  margin-bottom:30px;
+/* ===== MAIN TITLE ===== */
+.oasis-title {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #0369a1;
+  margin-bottom: 26px;
+  text-shadow: 0 4px 20px rgba(255, 255, 255, 0.65);
 }
 
-
-/* card style */
-
-.oasis-card{
-  background:rgba(255,255,255,0.92);
-  padding:30px;
-  border-radius:10px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.4);
+/* ===== OUTER GLASS WRAPPER ===== */
+.oasis-card {
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 28px;
+  padding: 30px;
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
-
-/* table */
-
-.table{
-  background:white;
+/* ===== INNER CARDS ===== */
+.modern-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-
-/* hover button */
-
-.btn{
-  transition:all 0.2s ease;
+.modern-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px rgba(15, 23, 42, 0.08);
 }
 
-.btn:hover{
-  transform:translateY(-1px);
+/* ===== HEADINGS ===== */
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.section-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 18px;
+}
+
+/* ===== INPUTS ===== */
+.form-control {
+  min-height: 48px;
+  border-radius: 14px;
+  border: 1px solid #dbe2ea;
+  padding: 10px 14px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: none !important;
+}
+
+.form-control:focus {
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.14) !important;
+}
+
+/* ===== RADIO GROUP ===== */
+.radio-wrap {
+  min-height: 48px;
+  border: 1px solid #dbe2ea;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0 14px;
+}
+
+.form-check-input {
+  cursor: pointer;
+}
+
+.form-check-label {
+  cursor: pointer;
+  font-weight: 500;
+  color: #334155;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.18s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #22d3ee, #0284c7);
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #06b6d4, #0369a1);
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  border: none;
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #e98d07, #ea580c);
+  color: #fff;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #fb7185, #ef4444);
+  border: none;
+}
+
+.btn-danger:hover {
+  background: linear-gradient(135deg, #f43f5e, #dc2626);
+}
+
+/* ===== TABLE ===== */
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  margin-bottom: 0;
+  background: transparent;
+}
+
+.table thead th {
+  background: #f0f9ff;
+  color: #0369a1;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 16px;
+}
+
+.table tbody td {
+  padding: 14px 16px;
+  border-color: #eef2f7;
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background: rgba(14, 165, 233, 0.06);
+}
+
+.student-name {
+  font-weight: 700;
+  color: #0284c7;
+}
+
+/* ===== BADGE ===== */
+.sect-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.sect-ced {
+  background: rgba(14, 165, 233, 0.12);
+  color: #0284c7;
+}
+
+.sect-tct {
+  background: rgba(34, 211, 238, 0.12);
+  color: #0891b2;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-box {
+  text-align: center;
+  padding: 34px 20px;
+  color: #64748b;
+  background: linear-gradient(135deg, rgba(240, 249, 255, 0.95), rgba(224, 242, 254, 0.95));
+  border: 1px dashed #cbd5e1;
+  border-radius: 18px;
+}
+
+/* ===== SMALL TEXT ===== */
+.soft-count {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 16px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .oasis-title {
+    font-size: 34px;
+  }
+
+  .oasis-card {
+    padding: 18px;
+    border-radius: 20px;
+  }
+
+  .modern-card {
+    padding: 18px;
+    border-radius: 18px;
+  }
 }
